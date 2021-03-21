@@ -9,19 +9,19 @@
           v-model.trim="email"
           :class="{
             invalid:
-              ($v.email.$dirty && $v.email.required) ||
+              ($v.email.$dirty && !$v.email.required) ||
               ($v.email.$dirty && !$v.email.email)
           }"
         />
         <label for="email">Email</label>
         <small
           class="helper-text invalid"
-          v-if="$v.email.$dirty && $v.email.required"
+          v-if="$v.email.$dirty && !$v.email.required"
           >Поле Email не должно быть пустым</small
         >
         <small
           class="helper-text invalid"
-          v-else-if="$v.email.$dirty && $v.email.email"
+          v-else-if="$v.email.$dirty && !$v.email.email"
           >Введите корректный Email</small
         >
       </div>
@@ -85,7 +85,7 @@ export default {
     }
   },
   methods: {
-    loginHandler() {
+    async loginHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -95,8 +95,13 @@ export default {
         email: this.email,
         password: this.password
       };
-      console.log(formData);
-      this.$router.push("/");
+
+      try {
+        await this.$store.dispatch("login", formData);
+        this.$router.push("/");
+      } catch (e) {
+        console.log();
+      }
     }
   },
   mounted() {
