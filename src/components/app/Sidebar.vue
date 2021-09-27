@@ -4,7 +4,7 @@
       v-for="link in links"
       :key="link.url"
       custom
-      v-slot="{ href, route, navigate, isActive }"
+      v-slot="{ href, navigate, isActive }"
       :to="link.url"
       :exact="link.exact"
     >

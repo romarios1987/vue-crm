@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import firebase from "firebase/compat/app";
 
 export default {
   actions: {
@@ -6,25 +6,22 @@ export default {
       try {
         const uid = await dispatch("getUid");
         const info = (
-          await firebase
-            .database()
-            .ref(`/users/${uid}/info/`)
-            .once("value")
+          await firebase.database().ref(`/users/${uid}/info/`).once("value")
         ).val();
         commit("setInfo", info);
       } catch (e) {
         console.log(e);
       }
-    }
+    },
   },
   mutations: {
     setInfo: (state, info) => (state.info = info),
-    clearInfo: state => (state.info = {})
+    clearInfo: (state) => (state.info = {}),
   },
   state: {
-    info: {}
+    info: {},
   },
   getters: {
-    getInfo: state => state.info
-  }
+    getInfo: (state) => state.info,
+  },
 };

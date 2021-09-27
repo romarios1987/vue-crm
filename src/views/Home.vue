@@ -22,18 +22,18 @@ export default {
   components: { HomeCurrency, HomeBill },
   data: () => ({
     loading: true,
-    currency: null
+    currency: null,
   }),
   methods: {
     async refresh() {
       this.loading = true;
       this.currency = await this.$store.dispatch("fetchCurrency");
       this.loading = false;
-    }
+    },
   },
   async mounted() {
     this.currency = await this.$store.dispatch("fetchCurrency");
     this.loading = false;
-  }
+  },
 };
 </script>

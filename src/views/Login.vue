@@ -10,7 +10,7 @@
           :class="{
             invalid:
               ($v.email.$dirty && !$v.email.required) ||
-              ($v.email.$dirty && !$v.email.email)
+              ($v.email.$dirty && !$v.email.email),
           }"
         />
         <label for="email">Email</label>
@@ -33,7 +33,7 @@
           :class="{
             invalid:
               ($v.password.$dirty && !$v.password.required) ||
-              ($v.password.$dirty && !$v.password.minLength)
+              ($v.password.$dirty && !$v.password.minLength),
           }"
         />
         <label for="password">Пароль</label>
@@ -72,17 +72,17 @@ export default {
   name: "Login",
   data: () => ({
     email: "",
-    password: ""
+    password: "",
   }),
   validations: {
     email: {
       required,
-      email
+      email,
     },
     password: {
       required,
-      minLength: minLength(6)
-    }
+      minLength: minLength(6),
+    },
   },
   methods: {
     async loginHandler() {
@@ -93,7 +93,7 @@ export default {
 
       const formData = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
 
       try {
@@ -102,13 +102,13 @@ export default {
       } catch (e) {
         console.log();
       }
-    }
+    },
   },
   mounted() {
     if (messages[this.$route.query.message]) {
       this.$message(messages[this.$route.query.message]);
     }
-  }
+  },
 };
 </script>
 

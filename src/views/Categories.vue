@@ -71,7 +71,7 @@
 
 <script>
 export default {
-  name: "Categories"
+  name: "Categories",
 };
 </script>
 

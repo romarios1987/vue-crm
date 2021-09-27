@@ -9,10 +9,11 @@ import currencyFilter from "@/filters/currency.filter";
 import messagePlugin from "./utils/message.plugin";
 import Loader from "@/components/app/Loader";
 import "materialize-css/dist/js/materialize.min";
+import "material-design-icons/iconfont/material-icons.css";
 
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/database";
 
 Vue.config.productionTip = false;
 
@@ -29,7 +30,7 @@ firebase.initializeApp({
   projectId: "vue-crm-10582",
   storageBucket: "vue-crm-10582.appspot.com",
   messagingSenderId: "844953752169",
-  appId: "1:844953752169:web:c741f2acada4f569ecc8f8"
+  appId: "1:844953752169:web:c741f2acada4f569ecc8f8",
 });
 
 let app;
@@ -39,7 +40,7 @@ firebase.auth().onAuthStateChanged(() => {
     app = new Vue({
       router,
       store,
-      render: h => h(App)
+      render: (h) => h(App),
     }).$mount("#app");
   }
 });

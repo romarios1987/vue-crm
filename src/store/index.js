@@ -13,10 +13,10 @@ export default new Vuex.Store({
     },
     clearError(state) {
       state.error = null;
-    }
+    },
   },
   getters: {
-    error: s => s.error
+    error: (s) => s.error,
   },
   actions: {
     async fetchCurrency() {
@@ -25,10 +25,10 @@ export default new Vuex.Store({
         `http://data.fixer.io/api/latest?access_key=${key}&symbols=USD,UAH,RUB,EUR`
       );
       return await res.json();
-    }
+    },
   },
   modules: {
     auth,
-    info
-  }
+    info,
+  },
 });
